@@ -1,8 +1,4 @@
-# Git Reset Cheat Sheet (Beginner-Friendly, Real-World Workflow)
-
-Here’s a beginner-friendly, “real life” scenario that fits all 4 reset types, with **the same common steps first**, then “which reset to pick” depending on what happened.
-
----
+This is changes made from not detach, origin/main
 
 ## Scenario (your workflow)
 
@@ -10,10 +6,10 @@ You work on **different computers / Codespaces** and sometimes let **Codex / Gem
 
 Example:
 
-* On Computer A / Codespace A, you made a couple commits on `main`.
-* On Computer B / Codespace B, you (or Codex/Gemini) also made commits on `main`.
-* Now your current workspace feels “messy”: commits are wrong order, or automation committed something you don’t want, or you pulled and got conflicts.
-* You decide: “I want my branch to go back to an earlier commit, and then decide what to keep.”
+- On Computer A / Codespace A, you made a couple commits on `main`.
+- On Computer B / Codespace B, you (or Codex/Gemini) also made commits on `main`.
+- Now your current workspace feels “messy”: commits are wrong order, or automation committed something you don’t want, or you pulled and got conflicts.
+- You decide: “I want my branch to go back to an earlier commit, and then decide what to keep.”
 
 ---
 
@@ -28,29 +24,29 @@ In VS Code:
 1. Open **Source Control** (Ctrl+Shift+G)
 2. Look for:
 
-   * **Staged Changes**
-   * **Changes**
-   * anything you care about
+   - **Staged Changes**
+   - **Changes**
+   - anything you care about
 
 If there are important changes you might want later, do **one** of these:
 
 **Option A — Commit a safety snapshot (easy for beginners)**
 
-* Click **+** to stage everything → write message like `WIP safety snapshot` → **Commit**
+- Click **+** to stage everything → write message like `WIP safety snapshot` → **Commit**
 
-  * (You can undo/clean later.)
+  - (You can undo/clean later.)
 
 **Option B — Stash (cleaner)**
 
-* Source Control `…` → **Stash** → **Stash Changes**
+- Source Control `…` → **Stash** → **Stash Changes**
 
-  * This hides local changes so resets are safer.
+  - This hides local changes so resets are safer.
 
 ---
 
 ### 1) Make sure you’re on the right branch
 
-* Bottom-left status bar: confirm it says `main` (or the branch you intend).
+- Bottom-left status bar: confirm it says `main` (or the branch you intend).
 
 ---
 
@@ -70,8 +66,8 @@ This updates your view of `origin/main` without changing files.
 
 In VS Code:
 
-* Source Control → **Graph / History**
-* Find a commit you trust (example: “before Codex/Gemini made weird changes” or “last known good build”).
+- Source Control → **Graph / History**
+- Find a commit you trust (example: “before Codex/Gemini made weird changes” or “last known good build”).
 
 ---
 
@@ -79,10 +75,10 @@ In VS Code:
 
 In VS Code:
 
-* **Right-click** that commit → **Reset current branch to this commit…**
-* Now you see the dialog with: **Soft / Mixed / Hard / Keep**
+- **Right-click** that commit → **Reset current branch to this commit…**
+- Now you see the dialog with: **Soft / Mixed / Hard / Keep**
 
-At this point, the *only difference* is which option you pick.
+At this point, the _only difference_ is which option you pick.
 
 ---
 
@@ -94,8 +90,8 @@ At this point, the *only difference* is which option you pick.
 
 ✅ Pick **Soft**
 
-* Result: files unchanged, changes become **staged**
-* Then you can make **one clean commit**.
+- Result: files unchanged, changes become **staged**
+- Then you can make **one clean commit**.
 
 Terminal equivalent:
 
@@ -111,7 +107,7 @@ git reset --soft <commit>
 
 ✅ Pick **Mixed**
 
-* Result: files unchanged, changes become **unstaged**
+- Result: files unchanged, changes become **unstaged**
 
 Terminal:
 
@@ -128,7 +124,7 @@ git reset --mixed <commit>
 
 ⚠️ Pick **Hard**
 
-* Result: working files revert; uncommitted changes lost
+- Result: working files revert; uncommitted changes lost
 
 Terminal:
 
@@ -144,7 +140,7 @@ git reset --hard <commit>
 
 ✅ Pick **Keep**
 
-* Result: reset only if it won’t clobber your edits (otherwise it fails safely)
+- Result: reset only if it won’t clobber your edits (otherwise it fails safely)
 
 Terminal:
 
@@ -161,24 +157,26 @@ No matter which type you chose:
 1. **Run your build/tests**
 2. If you used stash:
 
-   * Source Control `…` → **Stash → Apply Stash**
+   - Source Control `…` → **Stash → Apply Stash**
+
 3. If you plan to sync to GitHub and you reset history **on a branch that was already pushed**:
 
-   * You may need:
+   - You may need:
 
      ```bash
      git push --force-with-lease
      ```
-   * (Only do this if you understand you’re rewriting the branch history on remote.)
+
+   - (Only do this if you understand you’re rewriting the branch history on remote.)
 
 ---
 
 ## A simple rule for your specific workflow (multi-machine + AI automation)
 
-* If you’re unsure: **Mixed** is the safest “I want to inspect and keep my changes” choice.
-* If you have local edits you must not lose: **Keep**
-* If you’re cleaning up automation commits into one commit: **Soft**
-* If you want to completely discard local mess: **Hard**
+- If you’re unsure: **Mixed** is the safest “I want to inspect and keep my changes” choice.
+- If you have local edits you must not lose: **Keep**
+- If you’re cleaning up automation commits into one commit: **Soft**
+- If you want to completely discard local mess: **Hard**
 
 If you tell me which of these is your current case:
 
@@ -193,11 +191,11 @@ If you tell me which of these is your current case:
 
 In VS Code:
 
-* Command Palette → **Dev Containers: Rebuild Container**
+- Command Palette → **Dev Containers: Rebuild Container**
 
 In Codespaces:
 
-* **Rebuild** (same idea)
+- **Rebuild** (same idea)
 
 After the rebuild, confirm these commands work:
 
